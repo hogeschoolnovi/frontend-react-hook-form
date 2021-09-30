@@ -3,7 +3,7 @@
 ## Inleiding
 Je gaat een formulier met validatieregels bouwen in React Hook Form, dat er uiteindelijk zo uit zal zien:
 
-![screenshot]()
+![screenshot](./src/assets/screenshot.png)
 
 ## Applicatie starten
 
