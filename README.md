@@ -28,7 +28,7 @@ de webpagina.
     * Voornaam (verplicht)
     * Achternaam (verplicht)
     * Leeftijd (verplicht, minimaal 18)
-    * Postcode (verplicht, validatie op patroon _getal-getal-getal-getal-letter-letter_)
+    * Postcode (verplicht, validatie op patroon _getal-getal-getal-getal-letter-letter_. _Tip_: Google eens op zipcode regEx pattern)
     * Bezorgfrequentie als selectbox (verplicht, met _opties_: iedere week, om de week, iedere maand, anders)
     * Andere frequentie als tekstveld (alleen tonen indien "anders" geselecteerd wordt)
     * Opmerkingen
