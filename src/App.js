@@ -1,6 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import './App.css';
+import InputElement from './components/inputElement/InputElement';
+import Button from './components/button/Button';
+import MultiSelectElement from './components/multiSelectElement/MultiSelectElement';
+import SingleSelectElement from './components/singleSelectElement/SingleSelectElement';
 
 function App() {
   const { register, formState: { errors }, handleSubmit, watch } = useForm({
@@ -15,85 +19,94 @@ function App() {
 
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
-      <label htmlFor="firstname-field">Voornaam:</label>
-      <input
-        type="text"
-        id="firstname-field"
-        {...register("firstname", {
+      <InputElement
+        errors={errors}
+        register={register}
+        name="firstname"
+        label="Voornaam"
+        inputType="text"
+        validationRules={{
           required: "Voornaam is verplicht",
-        })}
+        }}
       />
-      {errors.firstname && <p>{errors.firstname.message}</p>}
 
-      <label htmlFor="lastname-field">Achternaam:</label>
-      <input
-        type="text"
-        id="lastname-field"
-        {...register("lastname", {
+      <InputElement
+        errors={errors}
+        register={register}
+        name="lastname"
+        label="Achternaam"
+        inputType="text"
+        validationRules={{
           required: "Achternaam is verplicht",
-        })}
+        }}
       />
-      {errors.lastname && <p>{errors.lastname.message}</p>}
 
-      <label htmlFor="age-field">Leeftijd:</label>
-      <input
-        type="number"
-        id="age-field"
-        {...register("age", {
+      <InputElement
+        errors={errors}
+        register={register}
+        name="age"
+        label="Leeftijd"
+        inputType="number"
+        validationRules={{
           required: "Leeftijd is verplicht",
           min: {
             value: 18,
             message: "Minimale leeftijd is 18",
           }
-        })}
+        }}
       />
-      {errors.age && <p>{errors.age.message}</p>}
 
-      <label htmlFor="zipcode-field">Postcode:</label>
-      <input
-        type="text"
-        {...register("zipcode", {
+      <InputElement
+        errors={errors}
+        register={register}
+        name="zipcode"
+        label="Postcode"
+        inputType="text"
+        validationRules={{
           required: "Postcode is verplicht",
           pattern: {
             value: /^[0-9]{4}[a-zA-Z]{2}$/,
             message: "Ongeldige postcode",
           }
-        })}
+        }}
       />
-      {errors.zipcode && <p>{errors.zipcode.message}</p>}
 
-      <label htmlFor="frequency-field">Bezorgfrequentie:</label>
-      <select {...register("delivery-frequency")}>
+      <SingleSelectElement errors={errors} register={register} name="delivery-frequency" label="Bezorgfrequentie">
         <option value="week">Iedere week</option>
         <option value="two-week">Om de week</option>
         <option value="month">Iedere maand</option>
         <option value="other">Anders</option>
-      </select>
+      </SingleSelectElement>
+
       {selectedFrequency === "other" &&
-        <>
-          <label htmlFor="other-field">Specificeer:</label>
-          <input
-            type="text"
-            id="other-field"
-            {...register("other")}
-          />
-        </>
+      <InputElement
+        errors={errors}
+        register={register}
+        name="other"
+        label="Specificeer"
+        inputType="text"
+      />
       }
-      <label htmlFor="comments-field">Opmerkingen:</label>
-      <textarea name="comments" id="comments-field" cols="30" rows="10"></textarea>
 
-      <label htmlFor="terms-and-conditions-field">
-        <input
-          type="checkbox"
-          id="terms-and-conditions-field"
-          {...register("terms-and-conditions")}
-        />
-        Ik ga akkoord met de algemene voorwaarden
-      </label>
+      <InputElement
+        errors={errors}
+        register={register}
+        name="comments"
+        label="Opmerkingen"
+        inputType="textarea"
+      />
 
-      <button type="submit">
+      <MultiSelectElement
+        errors={errors}
+        register={register}
+        name="terms-and-conditions"
+        label="Ik ga akkoord met de algemene voorwaarden"
+        selectType="checkbox"
+      />
+
+      <Button type="submit">
         Verzenden
-      </button>
+      </Button>
     </form>
   );
 }
