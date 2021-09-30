@@ -80,7 +80,7 @@ function App() {
         </>
       }
       <label htmlFor="comments-field">Opmerkingen:</label>
-      <textarea name="comments" id="comments-field" cols="30" rows="10"></textarea>
+      <textarea {...register("comments")} id="comments-field" cols="30" rows="10"></textarea>
 
       <label htmlFor="terms-and-conditions-field">
         <input
